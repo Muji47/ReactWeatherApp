@@ -27,6 +27,7 @@ function City() {
       .then(res=>res.json())
       .then(data=>setCityWeather(data))
     },[params.weather])
+    console.log(cityWeather)
   return (
     <div className='flex justify-center items-center text-center h-screen   text-white'>
         <div className='shadow-xl z-50 shadow-slate-500 w-72 h-96 rounded-lg  bg-[#29ADB2] flex flex-col justify-around items-center'>
@@ -34,7 +35,7 @@ function City() {
                 <button><Link to="/"><FaAngleLeft /></Link></button>
                 <p className='text-center'>{months[date.getMonth()]} {date.getDate()} {date.getFullYear()}</p>
             </div>
-            {!cityWeather.name?<p className='w-72'>Sorry,we cannot find <span className='font-bold '>{params.weather}</span> as a city.</p>:<>
+            {cityWeather.cod==="404"?<p className='w-80'>Sorry,we cannot find <span className='font-bold '>{params.weather}</span> as a city.</p>:<>{!cityWeather.name?<p>...Loading</p>:<>
             <h1 className='text-6xl font-bold'>{(cityWeather.main.temp-273).toFixed(1)}&deg;C</h1>
              <Citydes number={cityWeather.name} catname={cityWeather.weather[0].main} font="text-lg"/>
             <div className='grid grid-cols-3 justify-around w-[100%] gap-y-3'>
@@ -45,7 +46,8 @@ function City() {
                 <div><Citydes number={cityWeather.coord.lon}catname="Long" /></div>
                 <div><Citydes number={cityWeather.coord.lat}catname="Lat"/></div>
             </div>
-            </>}
+            </>
+            }</>}
         </div>
     </div>
   )

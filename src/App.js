@@ -12,12 +12,12 @@ const [inputCity,setInputCity]=useState('')
 const [city,setCity]=useState('')
 
 
-console.log(inputCity,city)
+console.log(inputCity,"sdgdfs",city)
   return (
     <div>
       <BrowserRouter>
       <Routes>
-          <Route exact path='/' element={<Home inputvalue={inputCity} setInput={setInputCity} setCity={setCity} city={city} />}/>
+          <Route exact path='/' element={<Home inputvalue={inputCity} setInput={setInputCity} />}/>
           <Route exact path=":weather" element={<City />} />
       </Routes>
     </BrowserRouter>
