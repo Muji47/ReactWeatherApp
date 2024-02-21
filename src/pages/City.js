@@ -6,7 +6,7 @@ import { Link, useParams } from 'react-router-dom';
 function City() {
     const [cityWeather,setCityWeather]=useState({})
     const params=useParams()
-    console.log(params.weather)
+    document.title=cityWeather.cod==="404"?"Not Found":!cityWeather.name?"Loading":cityWeather.name
     const date=new Date()
     const months = [
         "Jan",
@@ -30,7 +30,7 @@ function City() {
     console.log(cityWeather)
   return (
     <div className='flex justify-center items-center text-center h-screen   text-white'>
-        <div className='shadow-xl z-50 shadow-slate-500 w-72 h-96 rounded-lg  bg-[#29ADB2] flex flex-col justify-around items-center'>
+        <div className='shadow-xl z-50 shadow-slate-500 w-72 min-h-96 rounded-lg  bg-[#29ADB2] flex flex-col justify-around items-center'>
             <div className='flex'>
                 <button><Link to="/"><FaAngleLeft /></Link></button>
                 <p className='text-center'>{months[date.getMonth()]} {date.getDate()} {date.getFullYear()}</p>
@@ -43,8 +43,8 @@ function City() {
                 <div><Citydes number={cityWeather.main.humidity}catname="Humidity"/></div>
                 <div><Citydes number={cityWeather.clouds.all}catname="Clouds"/></div>
                 <div><Citydes number={cityWeather.main.pressure}catname="Pressure"/></div>
-                <div><Citydes number={cityWeather.coord.lon}catname="Long" /></div>
-                <div><Citydes number={cityWeather.coord.lat}catname="Lat"/></div>
+                <div><Citydes number={(cityWeather.coord.lon).toFixed(2)}catname="Long" /></div>
+                <div><Citydes number={(cityWeather.coord.lat).toFixed(2)}catname="Lat"/></div>
             </div>
             </>
             }</>}
