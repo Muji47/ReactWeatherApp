@@ -1,6 +1,6 @@
 import React from 'react'
 
-function City_des({number,catname,font}) {
+function Citydes({number,catname,font}) {
   return (
     <div className={font}>
         <h5>{number}</h5>
@@ -9,4 +9,4 @@ function City_des({number,catname,font}) {
   )
 }
 
-export default City_des
+export default Citydes
