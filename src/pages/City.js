@@ -2,22 +2,36 @@ import React,{useEffect,useState} from 'react'
 import { useParams } from 'react-router-dom';
 import { FaLongArrowAltLeft } from "react-icons/fa";
 import CityCard from '../components/CityCard';
+import Errorpage from './Errorpage'
 
 function City({setCities}) {
-    const [cityWeather,setCityWeather]=useState({})
+    const [cityWeather,setCityWeather]=useState(null)
+    const [loading,setLoading]=useState(true)
+    const [customError,setCustomError]=useState(false)
     const params=useParams()
-    document.title=cityWeather.cod==="404"?"Not Found":!cityWeather.name?"Loading":cityWeather.name
       useEffect(()=>{
-        const fetchApi=async()=>{
-      const response= await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${params.city}&appid=150eb08ece1308bbf170ae8d61074b75`)
-      const data=await response.json()
-      return setCityWeather(data)
-          }
-      fetchApi()
+       fetch(`https://api.openweathermap.org/data/2.5/weather?q=${params.city}&appid=150eb08ece1308bbf170ae8d61074b75`)
+      .then(response=>{
+        if(!response.ok)
+        {throw new Error("Invalid Api")} 
+        return response.json()})
+      .then(data=> {
+          setCityWeather(data)
+        setLoading(false)})
+        .catch(e=>{
+          console.log(e,"asdfas")
+          setCustomError(true)
+          setLoading(false)
+          document.title="Not Found"
+        })
     },[params.city])
+    console.log(customError)
+   
   return (
     <div className='flex justify-center items-center h-screen'>
-        <CityCard cityWeather={cityWeather} invalidCity={params.city} setCities={setCities} backArrow={<FaLongArrowAltLeft />} error/>
+        {loading&&<p className='text-[#29ADB2] text-4xl'>...loading</p>}
+        {!loading&&cityWeather&&<CityCard cityWeather={cityWeather} setCities={setCities} backArrow={<FaLongArrowAltLeft />}/>}
+        {customError&&<Errorpage/>}
     </div>
   )
 }

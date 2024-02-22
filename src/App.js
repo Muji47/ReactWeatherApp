@@ -12,7 +12,7 @@ function App() {
       <BrowserRouter>
       <Routes>
           <Route exact path='/' element={<Home cities={cities}/>}/>
-          <Route exact path=":city" element={<City  setCities={setCities} cities={cities}/>} />
+          <Route exact path=":city" element={<City  setCities={setCities}/>} />
           <Route path='*' element={<Errorpage/>}/>
       </Routes>
     </BrowserRouter>

@@ -8,8 +8,8 @@ function Home({cities}) {
   document.title="Home"
   console.log(cities)
   return (
-    <>
-    <div className='m-auto text-center flex-wrap w-[25%] my-20'>
+    <div className='flex flex-col'>
+    <div className='m-auto text-center flex-wrap w-[85%] my-20'>
         <h1 className='font-bold text-4xl text-[#29ADB2]  '>Welcome to our website</h1>
         <p className='text-2xl'>Here you can find the weather or situation of any city.</p>
         <div className='bg-[#29ADB2] p-2 my-2 w-[70%] m-auto'>
@@ -21,14 +21,14 @@ function Home({cities}) {
         </Link>
         </div>
     </div>
-        <div className='grid grid-cols-4  gap-10 my-6 place-items-center'>
+        <div className='grid grid-cols-1  gap-5 my-6 place-items-center md:grid-cols-2 lg:grid-cols-3'>
         {
           cities.map(city=>(
             <CityCard cityWeather={city}/>
           ))
         }
         </div>
-    </>
+    </div>
   )
 }
 
