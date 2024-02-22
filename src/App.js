@@ -6,7 +6,7 @@ import Errorpage from './pages/Errorpage';
 import { useState } from 'react';
 function App() {
   const [cities,setCities]=useState([])
-  console.log(cities)
+  
   return (
     <div>
       <BrowserRouter>

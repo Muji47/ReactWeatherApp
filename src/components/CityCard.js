@@ -3,7 +3,7 @@ import Citydes from '../components/Citydes';
 
 import { Link } from 'react-router-dom';
 
-function CityCard({cityWeather,setCities,backArrow}) {
+function CityCard({cityWeather,setCities,backArrow,url}) {
     const date=new Date()
     const months = [
         "Jan",
@@ -19,23 +19,31 @@ function CityCard({cityWeather,setCities,backArrow}) {
         "Nov",
         "Dec",
       ];
-     const addToSearch=()=>{
-     setCities(prev=>{
-      if(!prev.find(pr=>pr.id===cityWeather.id)){
-      return[...prev,cityWeather] }
+      
+
+      if(window.location.href.includes(url)){
+        document.title=cityWeather.name
+        setCities(prev=>{
+          if(!prev.find(pr=>pr.id===cityWeather.id)){
+          return[...prev,cityWeather] }
+          else{
+            console.log(prev.findIndex(pr=>pr.id===cityWeather.id))
+          const cityIndex=prev.findIndex(pr=>pr.id===cityWeather.id)
+           prev[cityIndex]=cityWeather
+          return[...prev]
+        };
+      })
+      }
       else{
-        console.log(prev.findIndex(pr=>pr.id===cityWeather.id))
-      const cityIndex=prev.findIndex(pr=>pr.id===cityWeather.id)
-       prev[cityIndex]=cityWeather
-      return[...prev]
-    };
-  })}
-  document.title=cityWeather.name
+        document.title="Home"
+      }
+    
+  
   return (
 
     <div className='shadow-xl z-50 shadow-slate-500 w-72 h-96 rounded-lg  bg-[#29ADB2] grid grid-rows-5 items-center text-white text-center'>
             <div>
-                <button className='float-left text-2xl font-bold ml-3' onClick={addToSearch}><Link to="/">{backArrow}</Link></button>
+                <button className='float-left text-2xl font-bold ml-3'><Link to="/">{backArrow}</Link></button>
                 <p className='place-items-center'>{months[date.getMonth()]} {date.getDate()} {date.getFullYear()}</p>
             </div>
             
