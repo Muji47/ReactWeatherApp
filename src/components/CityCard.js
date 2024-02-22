@@ -37,8 +37,6 @@ function CityCard({cityWeather,setCities,backArrow,url}) {
       else{
         document.title="Home"
       }
-    
-  
   return (
 
     <div className='shadow-xl z-50 shadow-slate-500 w-72 h-96 rounded-lg  bg-[#29ADB2] grid grid-rows-5 items-center text-white text-center'>
