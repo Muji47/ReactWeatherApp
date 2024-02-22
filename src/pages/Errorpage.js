@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 function Errorpage() {
+  document.title="Not Found"
   return (
     <div className='flex flex-col justify-center items-center h-screen'>
         <button className='cursor-pointer bg-[#29ADB2] px-4 py-2'><Link to={"/"}>Back to home</Link></button>
