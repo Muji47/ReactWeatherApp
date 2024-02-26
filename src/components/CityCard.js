@@ -1,9 +1,10 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Citydes from '../components/Citydes';
-
+import {CityContent} from '../App'
 import { Link } from 'react-router-dom';
 
-function CityCard({cityWeather,setCities,backArrow,url}) {
+function CityCard({cityWeather,backArrow,url}) {
+  const setCities=useContext(CityContent)
     const date=new Date()
     const months = [
         "Jan",
@@ -27,7 +28,6 @@ function CityCard({cityWeather,setCities,backArrow,url}) {
           if(!prev.find(pr=>pr.id===cityWeather.id)){
           return[...prev,cityWeather] }
           else{
-            console.log(prev.findIndex(pr=>pr.id===cityWeather.id))
           const cityIndex=prev.findIndex(pr=>pr.id===cityWeather.id)
            prev[cityIndex]=cityWeather
           return[...prev]

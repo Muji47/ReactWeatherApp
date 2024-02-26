@@ -4,7 +4,7 @@ import { FaLongArrowAltLeft } from "react-icons/fa";
 import CityCard from '../components/CityCard';
 import Errorpage from './Errorpage'
 
-function City({setCities}) {
+function City() {
     const [cityWeather,setCityWeather]=useState(null)
     const [loading,setLoading]=useState(true)
     const [customError,setCustomError]=useState("")
@@ -30,7 +30,7 @@ function City({setCities}) {
     <div className='flex justify-center items-center h-screen'>
       
         {loading&&<p className='text-[#29ADB2] text-4xl'>...loading</p>}
-        {!loading&&cityWeather&&<CityCard cityWeather={cityWeather} setCities={setCities} url={params.city} backArrow={<FaLongArrowAltLeft />}/>}
+        {!loading&&cityWeather&&<CityCard cityWeather={cityWeather} url={params.city} backArrow={<FaLongArrowAltLeft />}/>}
         {customError&&<Errorpage message={customError}/>}
     </div>
   )
