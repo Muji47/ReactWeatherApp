@@ -24,7 +24,7 @@ function City() {
           setLoading(false)
           document.title="Not Found"
         })
-    },[params.city])
+    },[])
    
   return (
     <div className='flex justify-center items-center h-screen'>
